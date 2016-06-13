@@ -4,9 +4,10 @@ function Contact(first, last) {
   this.lastName = last;
 }
 
-function Place(country, continent, landmarks, timeOfYear) {
+function Place(continent, country, city, landmarks, timeOfYear) {
   this.country = country;
   this.continent = continent;
+  this.city = city;
   this.landmarks = landmarks;
   this.timeOfYear = timeOfYear;
 }
@@ -30,6 +31,10 @@ Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
 }
 
+Place.prototype.placeName = function() {
+  return this.city + ", " + this.country;
+}
+
 // user interface logic
 $(document).ready(function() {
   $("form#new-contact").submit(function(event) {
@@ -51,30 +56,51 @@ $(document).ready(function() {
     $("input#new-last-name").val("");
   });
 
+  var landmarkArray=[];
+  $("button#add-landmark").click(function() {
+    event.preventDefault();
+    var additionalLandmark= $("input#new-landmarks").val();
+    landmarkArray.push(additionalLandmark);
+    $("input#new-landmarks").val("");
+  });
+
   $("form#new-place").submit(function(event) {
     event.preventDefault();
-
     var newContinent = $("input#new-continent").val();
     var newCountry= $("input#new-country").val();
+    var newCity= $("input#new-city").val();
     var newLandMarks= $("input#new-landmarks").val();
     var newTime= $("input#new-time").val();
 
-    var newPlace = new Place(newContinent, newCountry, newLandMarks, newTime);
-    console.log(newPlace)
-    console.log(newPlace.continent)
-    $("ul#places").append("<li><span class='place'>" + newPlace.continent + "</span></li>");
+    var prevLandmarks = landmarkArray.map(function(landmark){
+      return landmark;
+    });
+    if(newLandMarks != "") {
+      prevLandmarks.push(newLandMarks);
+    }
+
+    var newPlace = new Place(newContinent, newCountry, newCity, prevLandmarks, newTime);
+    console.log(newPlace);
+
+    $("ul#places").append("<li><span class='place'>" + newPlace.placeName() + "</span></li>");
     $(".place").last().click(function() {
       $("#show-place").show();
       $("#show-place h2").text(newPlace.continent);
       $(".continent").text(newPlace.continent);
       $(".country").text(newPlace.country);
+      $(".city").text(newPlace.city);
       $(".landMark").text(newPlace.landmarks);
       $(".timeOfYear").text(newPlace.timeOfYear);
     });
     $("input#new-continent").val("");
     $("input#new-country").val("");
+    $("input#new-city").val("");
     $("input#new-landmarks").val("");
     $("input#new-time").val("");
+    while(landmarkArray.length > 0) {
+      landmarkArray.pop();
+    }
+    console.log(newPlace);
   });
 
   $("form#new-todo").submit(function(event) {
