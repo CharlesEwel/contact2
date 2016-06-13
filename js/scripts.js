@@ -102,7 +102,12 @@ $(document).ready(function() {
     }
     console.log(newPlace);
   });
+var test="sleep"
+  $("button#completeTask").click(function() {
+    event.preventDefault();
+    $(".todo:contains(test)").remove();
 
+  });
   $("form#new-todo").submit(function(event) {
     event.preventDefault();
 
@@ -113,14 +118,21 @@ $(document).ready(function() {
 
     var newTodo = new Todo(inputtedTask, formatDate(inputtedDeadline), inputtedPriority, inputtedProject);
 
-    $("ul#toDoList").append("<li><span class='todo'>" + newTodo.task + "</span></li>");
+    $("ul#toDoList").append("<span class='todo'><li>" + newTodo.task + "</li></span>");
     $(".todo").last().click(function() {
+      $(".todo").removeClass("activeTodo")
+      $(this).addClass("activeTodo")
       $("#show-todo").show();
       $("#show-todo h2").text(newTodo.task);
       $(".task").text(newTodo.task);
       $(".deadline").text(newTodo.deadline);
       $(".priority").text(newTodo.priority);
       $(".project").text(newTodo.project);
+      $(".complete-button button").remove();
+      $(".complete-button").append('<button type="button" class="btn btn-success">Complete</button>');
+        $(".complete-button").click(function(){
+          $(".activeTodo").remove();
+        });
     });
     $("input#new-task").val("");
     $("input#new-deadline").val("");

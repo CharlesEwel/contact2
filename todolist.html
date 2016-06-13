@@ -19,7 +19,7 @@
         <h2 class="header">Constructors and Prototypes</h2>
       </header>
       <h1>To-Do List</h1>
-        <div class="col-md-6">
+        <div class="col-md-4">
           <h2>Add a To-Do:</h2>
           <form id="new-todo">
             <div class="form-group">
@@ -54,19 +54,25 @@
               <label for="new-project">Project</label>
               <input type="text" class="form-control" id="new-project">
             </div>
-            <button type="submit" class="btn">Add</button>
+            <button type="submit" class="btn btn">Add</button>
           </form>
-          <div class="col-md-6">
-            <div id="show-todo">
-              <h2></h2>
-              <p>Task: <span class="task"></span></p>
-              <p>Deadline: <span class="deadline"></span></p>
-              <p>Priority: <span class="priority"></span></p>
-              <p>Project: <span class="project"></span></p>
-            </div>
+          <div id="show-todo">
+            <h2></h2>
+            <p>Task: <span class="task"></span></p>
+            <p>Deadline: <span class="deadline"></span></p>
+            <p>Priority: <span class="priority"></span></p>
+            <p>Project: <span class="project"></span></p>
+            <span class="complete-button"></span>
           </div>
+        </div>
+        <div class="col-md-4">
           <h2>To-Do List:</h2>
           <ul id="toDoList">
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h2>Completed List:</h2>
+          <ul id="completedList">
           </ul>
         </div>
       </div>
