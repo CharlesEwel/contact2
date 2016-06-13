@@ -66,7 +66,7 @@ $(document).ready(function() {
 
   $("form#new-place").submit(function(event) {
     event.preventDefault();
-    var newContinent = $("input#new-continent").val();
+    var newContinent = $("#new-continent").val();
     var newCountry= $("input#new-country").val();
     var newCity= $("input#new-city").val();
     var newLandMarks= $("input#new-landmarks").val();
@@ -83,23 +83,29 @@ $(document).ready(function() {
     console.log(newPlace);
     if (newPlace.continent === "Africa") {
       $("ul#africa").append("<li><span class='place'>" + newPlace.placeName() + "</span></li>");
+      $("li#africa-list").show();
     } else if (newPlace.continent === "Antarctica") {
       $("ul#antarctica").append("<li><span class='place'>" + newPlace.placeName() + "</span></li>");
+      $("li#antarctica-list").show();
     } else if (newPlace.continent === "Asia") {
       $("ul#asia").append("<li><span class='place'>" + newPlace.placeName() + "</span></li>");
+      $("li#asia-list").show();
     } else if (newPlace.continent === "Europe") {
       $("ul#europe").append("<li><span class='place'>" + newPlace.placeName() + "</span></li>");
+      $("li#europe-list").show();
     } else if (newPlace.continent === "North America") {
       $("ul#north-america").append("<li><span class='place'>" + newPlace.placeName() + "</span></li>");
+      $("li#north-america-list").show();
     } else if (newPlace.continent === "South America") {
       $("ul#south-america").append("<li><span class='place'>" + newPlace.placeName() + "</span></li>");
+      $("li#south-america-list").show();
     } else {
       $("ul#oceania").append("<li><span class='place'>" + newPlace.placeName() + "</span></li>");
+      $("li#oceania-list").show();
     }
-
     $(".place").last().click(function() {
       $("#show-place").show();
-      $("#show-place h2").text(newPlace.continent);
+      $("#show-place h2").text(newPlace.placeName());
       $(".continent").text(newPlace.continent);
       $(".country").text(newPlace.country);
       $(".city").text(newPlace.city);

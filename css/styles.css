@@ -36,3 +36,7 @@
 .todo:hover {
   text-decoration: underline;
 }
+
+#africa-list, #antarctica-list, #asia-list, #europe-list, #north-america-list, #south-america-list, #oceania-list {
+  display: none;
+}
