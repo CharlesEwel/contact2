@@ -8,13 +8,13 @@
 
 **Places You've Been**
 
-This webpage allows user to enter information about places they've visited and stores it in a list
+This webpage allows user to enter information about places they've visited including multiple landmarks and stores it in a list
 
 * _Take input from user and create a place object that stores it and it's properties_
 
 **To Do List**
 
-This webpage allows user to enter to do tasks and display them in a todo list
+This webpage allows user to enter to do tasks, a due date selected from a calendar, and set a priority with a radio button and display them in a to-do list
 
 * _Take input from user and create a todo object that stores the task name, project, deadline and priority_
 
