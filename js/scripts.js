@@ -81,8 +81,22 @@ $(document).ready(function() {
 
     var newPlace = new Place(newContinent, newCountry, newCity, prevLandmarks, newTime);
     console.log(newPlace);
+    if (newPlace.continent === "Africa") {
+      $("ul#africa").append("<li><span class='place'>" + newPlace.placeName() + "</span></li>");
+    } else if (newPlace.continent === "Antarctica") {
+      $("ul#antarctica").append("<li><span class='place'>" + newPlace.placeName() + "</span></li>");
+    } else if (newPlace.continent === "Asia") {
+      $("ul#asia").append("<li><span class='place'>" + newPlace.placeName() + "</span></li>");
+    } else if (newPlace.continent === "Europe") {
+      $("ul#europe").append("<li><span class='place'>" + newPlace.placeName() + "</span></li>");
+    } else if (newPlace.continent === "North America") {
+      $("ul#north-america").append("<li><span class='place'>" + newPlace.placeName() + "</span></li>");
+    } else if (newPlace.continent === "South America") {
+      $("ul#south-america").append("<li><span class='place'>" + newPlace.placeName() + "</span></li>");
+    } else {
+      $("ul#oceania").append("<li><span class='place'>" + newPlace.placeName() + "</span></li>");
+    }
 
-    $("ul#places").append("<li><span class='place'>" + newPlace.placeName() + "</span></li>");
     $(".place").last().click(function() {
       $("#show-place").show();
       $("#show-place h2").text(newPlace.continent);
@@ -130,8 +144,10 @@ var test="sleep"
       $(".project").text(newTodo.project);
       $(".complete-button button").remove();
       $(".complete-button").append('<button type="button" class="btn btn-success">Complete</button>');
-        $(".complete-button").click(function(){
+        $(".btn-success").click(function(){
           $(".activeTodo").remove();
+          $("#show-todo").hide();
+          $("ul#completed-list").append("<li>" + newTodo.task + "</li>");
         });
     });
     $("input#new-task").val("");
