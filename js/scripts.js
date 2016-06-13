@@ -11,6 +11,13 @@ function Place(country, continent, landmarks, timeOfYear) {
   this.timeOfYear = timeOfYear;
 }
 
+function Todo(task, deadline, priority, project) {
+  this.task = task;
+  this.deadline = deadline;
+  this.priority = priority;
+  this.project = project;
+}
+
 Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
 }
@@ -60,5 +67,30 @@ $(document).ready(function() {
     $("input#new-country").val("");
     $("input#new-landmarks").val("");
     $("input#new-time").val("");
+  });
+
+  $("form#new-todo").submit(function(event) {
+    event.preventDefault();
+
+    var inputtedTask = $("input#new-task").val();
+    var inputtedDeadline = $("input#new-deadline").val();
+    var inputtedPriority = $("input#new-priority").val();
+    var inputtedProject = $("input#new-project").val();
+
+    var newTodo = new Todo(inputtedTask, inputtedDeadline, inputtedPriority, inputtedProject);
+
+    $("ul#toDoList").append("<li><span class='todo'>" + newTodo.task + "</span></li>");
+    $(".todo").last().click(function() {
+      $("#show-todo").show();
+      $("#show-todo h2").text(newTodo.task);
+      $(".task").text(newTodo.task);
+      $(".deadline").text(newTodo.deadline);
+      $(".priority").text(newTodo.priority);
+      $(".project").text(newTodo.project);
+    });
+    $("input#new-task").val("");
+    $("input#new-deadline").val("");
+    $("input#new-priority").val("");
+    $("input#new-project").val("");
   });
 });

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-1.12.4.js"></script>
+    <script src="js/scripts.js"></script>
+    <title>Places We've Visited</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <header class="page-header">
+          <ul class="nav nav-tabs pull-right">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Places.html">Places We've Been</a></li>
+            <li class="active"><a href="todolist.html">To-Do List</a></li>
+          </ul>
+        <h2 class="header">Constructors and Prototypes</h2>
+      </header>
+      <h1>To-Do List</h1>
+        <div class="col-md-6">
+          <h2>Add a To-Do:</h2>
+          <form id="new-todo">
+            <div class="form-group">
+              <label for="new-task">Task</label>
+              <input type="text" class="form-control" id="new-task">
+            </div>
+            <div class="form-group">
+              <label for="new-deadline">Deadline</label>
+              <input type="text" class="form-control" id="new-deadline">
+            </div>
+            <div class="form-group">
+              <label for="new-priority">Priority</label>
+              <input type="text" class="form-control" id="new-priority">
+            </div>
+            <div class="form-group">
+              <label for="new-project">Project</label>
+              <input type="text" class="form-control" id="new-project">
+            </div>
+            <button type="submit" class="btn">Add</button>
+          </form>
+          <div class="col-md-6">
+            <div id="show-todo">
+              <h2></h2>
+              <p>Task: <span class="task"></span></p>
+              <p>Deadline: <span class="deadline"></span></p>
+              <p>Priority: <span class="priority"></span></p>
+              <p>Project: <span class="project"></span></p>
+            </div>
+          </div>
+          <h2>To-Do List:</h2>
+          <ul id="toDoList">
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
