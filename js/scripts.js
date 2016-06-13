@@ -26,6 +26,30 @@ function formatDate(date) {
   return month+'/'+day+'/'+year
 }
 
+var commaspace = /, (\w)/;
+var euroArr=[];
+var africaArr=[];
+var antarcticaArr=[];
+var oceaniaArr=[];
+var northAmericaArr=[];
+var southAmericaArr=[];
+var asiaArr=[];
+
+var place_sort = function(place1, place2) {
+  if(commaspace.exec(place2)[1]>commaspace.exec(place1)[1]){
+    return -1;
+  } else if(commaspace.exec(place2)[1]<commaspace.exec(place1)[1]){
+    return 1;
+  } else {
+    if(place2.charAt(0)>place1.charAt(0)){
+      return -1;
+    } else if(place2.charAt(0)<place1.charAt(0)) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+}
 
 Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
@@ -72,6 +96,7 @@ $(document).ready(function() {
     var newLandMarks= $("input#new-landmarks").val();
     var newTime= $("input#new-time").val();
 
+
     var prevLandmarks = landmarkArray.map(function(landmark){
       return landmark;
     });
@@ -82,27 +107,63 @@ $(document).ready(function() {
     var newPlace = new Place(newContinent, newCountry, newCity, prevLandmarks, newTime);
     console.log(newPlace);
     if (newPlace.continent === "Africa") {
-      $("ul#africa").append("<li><span class='place'>" + newPlace.placeName() + "</span></li>");
+      africaArr.push(newPlace.placeName())
+      africaArr.sort(place_sort);
+        $("ul#africa li").remove();
+      africaArr.forEach(function(place) {
+        $("ul#africa").append("<li><span class='place'>" + place + "</span></li>");
+      });
       $("li#africa-list").show();
     } else if (newPlace.continent === "Antarctica") {
-      $("ul#antarctica").append("<li><span class='place'>" + newPlace.placeName() + "</span></li>");
+      antarcticaArr.push(newPlace.placeName())
+      antarcticaArr.sort(place_sort);
+        $("ul#antarctica li").remove();
+      antarcticaArr.forEach(function(place) {
+        $("ul#antarctica").append("<li><span class='place'>" + place + "</span></li>");
+      });
       $("li#antarctica-list").show();
     } else if (newPlace.continent === "Asia") {
-      $("ul#asia").append("<li><span class='place'>" + newPlace.placeName() + "</span></li>");
+      asiaArr.push(newPlace.placeName())
+      asiaArr.sort(place_sort);
+        $("ul#asia li").remove();
+      asiaArr.forEach(function(place) {
+        $("ul#asia").append("<li><span class='place'>" + place + "</span></li>");
+      });
       $("li#asia-list").show();
     } else if (newPlace.continent === "Europe") {
-      $("ul#europe").append("<li><span class='place'>" + newPlace.placeName() + "</span></li>");
+      euroArr.push(newPlace.placeName())
+      euroArr.sort(place_sort);
+        $("ul#europe li").remove();
+      euroArr.forEach(function(place) {
+        $("ul#europe").append("<li><span class='place'>" + place + "</span></li>");
+      });
       $("li#europe-list").show();
     } else if (newPlace.continent === "North America") {
-      $("ul#north-america").append("<li><span class='place'>" + newPlace.placeName() + "</span></li>");
+      northAmericaArr.push(newPlace.placeName())
+      northAmericaArr.sort(place_sort);
+        $("ul#north-america li").remove();
+      northAmericaArr.forEach(function(place) {
+        $("ul#north-america").append("<li><span class='place'>" + place + "</span></li>");
+      });
       $("li#north-america-list").show();
     } else if (newPlace.continent === "South America") {
-      $("ul#south-america").append("<li><span class='place'>" + newPlace.placeName() + "</span></li>");
+      southAmericaArr.push(newPlace.placeName())
+      southAmericaArr.sort(place_sort);
+        $("ul#south-america li").remove();
+      southAmericaArr.forEach(function(place) {
+        $("ul#south-america").append("<li><span class='place'>" + place + "</span></li>");
+      });
       $("li#south-america-list").show();
     } else {
-      $("ul#oceania").append("<li><span class='place'>" + newPlace.placeName() + "</span></li>");
+      oceaniaArr.push(newPlace.placeName())
+      oceaniaArr.sort(place_sort);
+        $("ul#oceania li").remove();
+      oceaniaArr.forEach(function(place) {
+        $("ul#oceania").append("<li><span class='place'>" + place + "</span></li>");
+      });
       $("li#oceania-list").show();
     }
+
     $(".place").last().click(function() {
       $("#show-place").show();
       $("#show-place h2").text(newPlace.placeName());
