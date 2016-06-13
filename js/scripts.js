@@ -18,6 +18,14 @@ function Todo(task, deadline, priority, project) {
   this.project = project;
 }
 
+function formatDate(date) {
+  var day = date.charAt(8)+date.charAt(9);
+  var month = date.charAt(5)+date.charAt(6);
+  var year = date.charAt(0)+date.charAt(1)+date.charAt(2)+date.charAt(3);
+  return month+'/'+day+'/'+year
+}
+
+
 Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
 }
@@ -74,10 +82,10 @@ $(document).ready(function() {
 
     var inputtedTask = $("input#new-task").val();
     var inputtedDeadline = $("input#new-deadline").val();
-    var inputtedPriority = $("input#new-priority").val();
+    var inputtedPriority = $("input:radio[name=priority]:checked").val();
     var inputtedProject = $("input#new-project").val();
 
-    var newTodo = new Todo(inputtedTask, inputtedDeadline, inputtedPriority, inputtedProject);
+    var newTodo = new Todo(inputtedTask, formatDate(inputtedDeadline), inputtedPriority, inputtedProject);
 
     $("ul#toDoList").append("<li><span class='todo'>" + newTodo.task + "</span></li>");
     $(".todo").last().click(function() {
