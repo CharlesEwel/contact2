@@ -35,4 +35,30 @@ $(document).ready(function() {
     $("input#new-first-name").val("");
     $("input#new-last-name").val("");
   });
+
+  $("form#new-place").submit(function(event) {
+    event.preventDefault();
+
+    var newContinent = $("input#new-continent").val();
+    var newCountry= $("input#new-country").val();
+    var newLandMarks= $("input#new-landmarks").val();
+    var newTime= $("input#new-time").val();
+
+    var newPlace = new Place(newContinent, newCountry, newLandMarks, newTime);
+    console.log(newPlace)
+    console.log(newPlace.continent)
+    $("ul#places").append("<li><span class='place'>" + newPlace.continent + "</span></li>");
+    $(".place").last().click(function() {
+      $("#show-place").show();
+      $("#show-place h2").text(newPlace.continent);
+      $(".continent").text(newPlace.continent);
+      $(".country").text(newPlace.country);
+      $(".landMark").text(newPlace.landmarks);
+      $(".timeOfYear").text(newPlace.timeOfYear);
+    });
+    $("input#new-continent").val("");
+    $("input#new-country").val("");
+    $("input#new-landmarks").val("");
+    $("input#new-time").val("");
+  });
 });
